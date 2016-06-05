@@ -11,7 +11,7 @@ Boilerplate blog application for a Laravel JWT Backend and a React/Redux Front-E
 * Redux-Form
 * Webpack
 
-![screenshot](http://)
+![screenshot](https://github.com/onerciller/react-redux-laravel/blob/master/public/img.png)
 
 ##Installation
 
