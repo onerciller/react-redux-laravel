@@ -1,57 +1,44 @@
-# React-Redux-Flask #
+# React-Redux-Laravel#
 
-Boilerplate application for a Flask JWT Backend and a React/Redux Front-End with Material UI.
+Boilerplate blog application for a Laravel JWT Backend and a React/Redux Front-End with Bootstrap 4.
 
-* Python 2.7
-* Pytest
-* Heroku
-* Flask
+* Laravel 5.2
 * React
 * Redux
-* React-Router 2.0
+* React-Router
 * React-Router-Redux
 * Babel 6
-* SCSS processing
+* Redux-Form
 * Webpack
 
-![screenshot](http://i.imgur.com/ZIS4qkw.png)
+![screenshot](http://)
 
-### Create DB
+##Installation
+
+### Laravel
 ```sh
-$ export DATABASE_URL="postgresql://localhost/yourdb"
-$ python manage.py create_db
-$ python manage.py db init
-$ python manage.py db migrate
-$ python manage.py db upgrade
+$ composer update
+$ php artisan migrate 
+
 ```
 
 ### Install Front-End Requirements
 ```sh
-$ cd static
-$ npm intall
+$ cd client-app
+$ npm install
 ```
 
 ### Run Back-End
 
 ```sh
-$ python manage.py runserver
+$ php artisan serve
 ```
 
-### Test Back-End
-
-```sh
-$ python test.py --cov-report=term --cov-report=html --cov=application/ tests/
-```
 
 ### Run Front-End
 
 ```sh
-$ cd static
+$ cd client-app
 $ npm start
 ```
-
-### Build Front-End
-
-```sh
-$ npm run build:production
-```
+ 
