@@ -11,7 +11,7 @@ export default function (state = INITIAL_STATE,action){
       case EDIT_POST:
         return { ...state, edit: action.payload.data };     
       case UPDATE_POST:
-        return { ...state, edit: action.payload.data };     
+        return { ...state, update: action.payload.data };     
       default:
         return state;
     }

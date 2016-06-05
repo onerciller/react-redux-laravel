@@ -43,7 +43,7 @@ class PostController extends Controller
              'body' => $request->input('body'),
              'user_id' => 1
         ]);
-        return response()->json($post,200);
+        return response()->json("UPDATED",200);
         }
         
     public function destroy($id){

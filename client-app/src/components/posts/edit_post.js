@@ -51,7 +51,8 @@ this.context.router.push('/posts');
 function mapStateToProps(state) {
     return {
         edit:state.posts.edit,
-        initialValues: state.posts.edit
+        initialValues: state.posts.edit,
+        update:state.posts.update
     }
 }
 export default reduxForm({

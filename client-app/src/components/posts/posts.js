@@ -16,6 +16,7 @@ class Posts extends Component {
   }
 
  renderPosts() {
+     console.log(this.props.update);
      if(this.props.posts){
     return this.props.posts.map((post) => {
       return (
@@ -47,6 +48,7 @@ function mapStateToProps(state) {
     return {
         posts:state.posts.all,
         authenticated:state.auth.authenticated,
+        update:state.posts.update
     }
 }
 export default connect(mapStateToProps,actions)(Posts);
