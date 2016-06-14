@@ -6,7 +6,6 @@ Boilerplate blog application for a Laravel JWT Backend and a React/Redux Front-E
 * React
 * Redux
 * React-Router
-* React-Router-Redux
 * Babel 6
 * Redux-Form
 * Webpack
