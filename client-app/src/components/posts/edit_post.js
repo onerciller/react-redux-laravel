@@ -16,12 +16,15 @@ class EditPost extends Component {
 
 handleFormSubmit(formProps){
 this.props.updatePost(this.props.params.id,formProps);
+if(this.props.updatePostStatus.post == true){
 this.context.router.push('/posts');
 }
+}
+
     render(){
       const {handleSubmit,fields:{title,body}} = this.props;
         if(!this.props.edit){
-            return <div>Loading...</div>;
+            return <div className="loader"></div>;
         }
         return (
             <div>
@@ -50,9 +53,9 @@ this.context.router.push('/posts');
 
 function mapStateToProps(state) {
     return {
-        edit:state.posts.edit,
-        initialValues: state.posts.edit,
-        update:state.posts.update
+        edit:state.posts.editPost,
+        initialValues: state.posts.editPost.post,
+        updatePostStatus: state.posts.updatePost
     }
 }
 export default reduxForm({

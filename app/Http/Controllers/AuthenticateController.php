@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Mockery\CountValidator\Exception;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Auth;
 
 class AuthenticateController extends Controller
 {
@@ -31,11 +32,8 @@ class AuthenticateController extends Controller
 	        if ($validator->fails()) {
 	           return response()->json(['error' => 'This user such a already exist'], 422);
 	        }
-        	
-       		 $user = $this->create($credentials);
-
- 			$token = JWTAuth::fromUser($user);
-
+       		 $user = User::create($credentials);
+ 		$token = JWTAuth::fromUser($user);
 	        return response()->json(compact('token'));
 
 

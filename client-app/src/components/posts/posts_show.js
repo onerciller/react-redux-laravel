@@ -20,23 +20,32 @@ class PostsShow extends Component{
                 );
             }
     }
+    renderPost(post){
+        if(post){
+        return (
+            <div>
+            <h3>{post.title}</h3>
+            {this.handleDeletePost()}    
+            <p>{post.body}</p>
+            </div>
+               );
+        }
+    }
     render(){
-        console.log(this.props.authenticated);
-        if(!this.props.post){
-            return <div>Loading...</div>;
+        const {post,loading,error} = this.props.activePost;
+        if(loading == true){
+            return <div className="loader"></div>;
         }
         return (
             <div>
-            <h3>{this.props.post.title}</h3>
-            {this.handleDeletePost()}    
-            <p>{this.props.post.body}</p>
+            {this.renderPost(post)}
             </div>
                );
     }
 }
 function mapStateToProps(state){
     return {
-        post:state.posts.post,
+        activePost:state.posts.activePost,
         authenticated:state.auth.authenticated
     }
 }

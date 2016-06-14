@@ -2,10 +2,12 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/index';
 import {Link} from 'react-router';
+import spinner from 'react-loader';
 class Posts extends Component {
 
   componentWillMount(){
   this.props.fetchPost();
+  this.props.userInfo();
   }
   handleEditButton(post) {
       if(this.props.authenticated){
@@ -15,10 +17,8 @@ class Posts extends Component {
       }
   }
 
- renderPosts() {
-     console.log(this.props.update);
-     if(this.props.posts){
-    return this.props.posts.map((post) => {
+ renderPosts(posts) {
+    return posts.map((post) => {
       return (
         <li className="list-group-item" key={post.id}>
             <Link to={"posts/"+post.id}>
@@ -28,17 +28,21 @@ class Posts extends Component {
         </li>
       );
     });
-     }
   }
 
-
     render(){
+        const {posts,loading,error} = this.props.postsList;
+        if(loading === true){  
+            return <div className="loader"></div>;
+        }
         return (
-              <div className="container clearfix">
+                <div>
+                <br />
+                <div className="clearfix"></div>
                 <ul className="list-group">
-                {this.renderPosts()}
+                {this.renderPosts(posts)}
                 </ul>
-              </div>
+                </div>
         );
 
     }
@@ -46,9 +50,9 @@ class Posts extends Component {
 
 function mapStateToProps(state) {
     return {
-        posts:state.posts.all,
+        postsList:state.posts.postsList,
         authenticated:state.auth.authenticated,
-        update:state.posts.update
+        userinfo : state.auth.userinfo
     }
 }
 export default connect(mapStateToProps,actions)(Posts);

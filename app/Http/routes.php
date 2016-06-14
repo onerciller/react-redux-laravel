@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Http\Request;
+use App\User;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes |--------------------------------------------------------------------------
@@ -20,14 +24,12 @@ Route::get('/home', 'HomeController@index');
         Route::post('/register','AuthenticateController@register');
     });
 
-Route::get('deneme', function () {
-    $dd =  \App\Post::deneme();
-    dd($dd);
-});
-
-
         Route::group(['prefix' => 'api','jwt.auth','cors'],function () {
-           Route::resource('posts','PostController');
+            Route::resource('posts','PostController');
+            Route::get('userinfo', function () {
+                return JWTAuth::parseToken()->authenticate();
+            });
+            
         });
 
 
