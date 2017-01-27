@@ -13,36 +13,32 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticateController extends Controller
 {
-    public function index(){
-
+    public function index()
+    {
         return view('api.auth');
     }
 
+    public function register(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
 
-    public function register(Request $request){
-
-    	$credentials = $request->only('email', 'password');
-
-
-       	$validator = \Validator::make($credentials, [
+        $validator = \Validator::make($credentials, [
             'email' => 'required|email|unique:users',
-            'password' => 'required']);
+            'password' => 'required'
+        ]);
 
+        if ($validator->fails()) {
+            return response()->json(['error' => 'This user such a already exist'], 422);
+        }
 
-	        if ($validator->fails()) {
-	           return response()->json(['error' => 'This user such a already exist'], 422);
-	        }
-       		 $user = User::create($credentials);
- 		$token = JWTAuth::fromUser($user);
-	        return response()->json(compact('token'));
+        $user = User::create($credentials);
+        $token = JWTAuth::fromUser($user);
 
-
-
+        return response()->json(compact('token'));
     }
 
     public function authenticate(Request $request)
     {
-        
         // grab credentials from the request
         $credentials = $request->only('email', 'password');
 
@@ -60,7 +56,6 @@ class AuthenticateController extends Controller
         return response()->json(compact('token'));
     }
 
-
     protected function create(array $data)
     {
         return User::create([
@@ -68,5 +63,4 @@ class AuthenticateController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
-
 }

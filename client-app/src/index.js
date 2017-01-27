@@ -18,14 +18,11 @@ import AddPost from './components/posts/add_post';
 import PostsShow from './components/posts/posts_show';
 import EditPost from './components/posts/edit_post';
 
-
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 const token = localStorage.getItem('token');
 
-
 if(token){
-
   store.dispatch({type:AUTH_USER});
 }
 
