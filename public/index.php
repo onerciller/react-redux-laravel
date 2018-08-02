@@ -1,19 +1,13 @@
 <?php
 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: ACCEPT, CONTENT-TYPE, X-CSRF-TOKEN");
-header("Access-Control-Allow-Methods: GET, POST,PUT, OPTIONS, DELETE");
-header('Access-Control-Allow-Origin: http://localhost:8080');
-header('Access-Control-Allow-Headers: X-Custom-Header');
-header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization');
-
-
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
  * @package  Laravel
- * @author   Taylor Otwell <taylorotwell@gmail.com>
+ * @author   Taylor Otwell <taylor@laravel.com>
  */
+
+define('LARAVEL_START', microtime(true));
 
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +17,11 @@ header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Autho
 | Composer provides a convenient, automatically generated class loader for
 | our application. We just need to utilize it! We'll simply require it
 | into the script here so that we don't have to worry about manual
-| loading any of our classes later on. It feels nice to relax.
+| loading any of our classes later on. It feels great to relax.
 |
 */
 
-require __DIR__.'/../bootstrap/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
