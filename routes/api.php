@@ -22,12 +22,9 @@ Route::group(['middleware' => ['cors']], function () {
     Route::post("login", "AuthenticateController@authenticate");
     
     Route::post('/register', 'AuthenticateController@register');
+    Route::resource('posts', 'PostController');
 
-    Route::group(['middleware' => ['cors']], function () {
-        Route::resource('posts', 'PostController');
-
-        Route::get('userinfo', function () {
-            return JWTAuth::parseToken()->authenticate();
-        });
+    Route::get('userinfo', function () {
+        return JWTAuth::parseToken()->authenticate();
     });
 });
